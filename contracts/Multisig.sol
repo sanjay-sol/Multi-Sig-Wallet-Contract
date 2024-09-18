@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Multi {
+contract Multisig {
     event Deposit(address indexed sender, uint indexed amount);
     event Submit(uint indexed txnId);
     event Approve(address indexed owner, uint indexed txnId);
@@ -79,7 +79,8 @@ contract Multi {
     }
 
     function _getApprovalCount(uint _txnId) private view returns (uint count) {
-        for(uint i; i < owners.length; i++){
+        uint ownerCount = owners.length;
+        for(uint i; i < ownerCount; i++){
             if(approved[_txnId][owners[i]]){
                 count += 1;
             }
